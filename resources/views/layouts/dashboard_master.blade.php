@@ -185,11 +185,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link toggle-search" href="#"><i class="material-icons">search</i></a>
                                 </li>
-                                <li class="nav-item hidden-on-mobile">
+                                <li class="nav-item hidden-on-mobile d-flex">
                                     <a class="nav-link language-dropdown-toggle" href="#" id="languageDropDown" data-bs-toggle="dropdown"><img src="{{ asset('uploads/profile') }}/{{ auth()->user()->image }}" alt=""></a>
                                         <ul class="dropdown-menu dropdown-menu-end language-dropdown" aria-labelledby="languageDropDown">
-                                            <li><a class="dropdown-item" href="#"><i class="material-icons-two-tone me-2" style="font-size: 28px; padding-top:0px !important;">face</i> Dashboard</a></li>
-                                            <li><a class="dropdown-item" href="#"><i class="material-icons-two-tone me-2" style="font-size: 28px; padding-top:0px !important;">face</i> Profile</a></li>
+                                            <li><a class="dropdown-item d-flex flex-colomn" href="{{ route('home') }}"><i class="material-icons-two-tone me-2 " style="font-size: 22px; padding-top:0px !important;">dashboard</i> Dashboard</a></li>
+                                            <li><a class="dropdown-item d-flex flex-colomn" href="{{ route('profile.index') }}"><i class="material-icons-two-tone me-2" style="font-size: 22px; padding-top:0px !important;">face</i> Profile</a></li>
                                             {{-- <li><a class="dropdown-item" href="#"><img src="{{ asset('dashboard_assets') }}/assets/images/flags/china.png" alt="">Chinese</a></li> --}}
                                         </ul>
                                 </li>

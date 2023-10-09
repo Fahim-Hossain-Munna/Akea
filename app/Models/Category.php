@@ -12,4 +12,8 @@ class Category extends Model
         " "
     ];
 
+    public function RelationshipwithBlog(){
+        return $this->hasOne(Blog::class,'category_id','id');
+    }
+
 }

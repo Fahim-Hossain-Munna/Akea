@@ -64,7 +64,8 @@
                                     <a href="{{ route('blog.edit' , $blog->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                 </td>
                                 <td>
-                                    <form action="{{ route('blog.delete' , $blog->id) }}">
+                                    <form action="{{ route('blog.delete' , $blog->id) }}" method="POST">
+                                        @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
                                 </td>

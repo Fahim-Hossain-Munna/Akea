@@ -12,7 +12,7 @@
                     <div class="owl-carousel">
                         <!--post1-->
                     @foreach ($blogs as $blog)
-                            <div class="blog-item" style="background-image: url('{{ asset('frontend_assets') }}/assets/img/blog/bg1.jpg')">
+                            <div class="blog-item" style="background-image: url('{{ asset('uploads/blog') }}/{{ $blog->image }}')">
                                 <div class="blog-banner">
                                     <div class="post-overly">
                                         <div class="post-overly-content">
@@ -47,7 +47,7 @@
                     <div class="col-lg-12 ">
                         <div class="categories-items">
                            @foreach ($categories as $category)
-                             <a class="category-item" href="#">
+                             <a class="category-item" href="{{ route('blogs.category',$category->id) }}">
                                  <div class="image">
                                      <img src="{{ asset('uploads/category') }}/{{ $category->category_image }}" alt="">
                                  </div>

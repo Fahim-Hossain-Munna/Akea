@@ -71,6 +71,11 @@
                     <li class="{{ (\Request::route()->getName() == 'profile.index') ? 'active-page' : '' }}">
                         <a href="{{ route('profile.index') }}" class="active"><i class="material-icons-two-tone">face</i>Profile</a>
                     </li>
+                    @can('author')
+                    <li class="{{ (\Request::route()->getName() == 'role.management') ? 'active-page' : '' }}">
+                        <a href="{{ route('role.management') }}" class="active"><i class="material-icons-two-tone">key</i>Role Management</a>
+                    </li>
+                    @endcan
                     <li>
                         <a href="mailbox.html"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>
                     </li>

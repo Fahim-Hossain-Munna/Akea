@@ -10,7 +10,13 @@ class FrontendController extends Controller
 {
     public function index(){
         $categories = Category::all();
-        $blogs = Blog::all();
+        $blogs = Blog::where('status','active')->latest()->get();
         return view('frontend.root.index',compact('categories','blogs'));
+    }
+
+    public function category_blogs($id){
+        $blogs = Blog::where('category_id',$id)->latest()->get();
+        $blog = Category::where('id',$id)->first();
+        return view('frontend.blogs.index',compact('blogs','blog'));
     }
 }

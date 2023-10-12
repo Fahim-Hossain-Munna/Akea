@@ -129,8 +129,8 @@
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">User Name</label>
                     <select class="form-control" name="user_id">
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                        @foreach ($peoples as $people)
+                            <option value="{{ $people->id }}">{{ $people->name }}</option>
                         @endforeach
                     </select>
                 </div>

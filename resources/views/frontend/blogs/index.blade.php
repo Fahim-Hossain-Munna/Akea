@@ -28,16 +28,16 @@
                  <!--post 1-->
                  <div class="post-list post-list-style2">
                      <div class="post-list-image">
-                         <a href="post-single.html">
-                             <img src="assets/img/blog/30.jpg" alt="">
+                         <a href="{{ route('single.blogs', $blog->id) }}">
+                             <img src="{{ asset('uploads/blog') }}/{{ $blog->image }}" alt="">
                          </a>
                      </div>
                      <div class="post-list-content">
                          <h3 class="entry-title">
-                             <a href="post-single.html">{{ $blog->title }}</a>
+                             <a href="{{ route('single.blogs',$blog->id) }}">{{ $blog->title }}</a>
                          </h3>
                          <ul class="entry-meta">
-                             <li class="post-author-img"><img src="assets/img/author/1.jpg" alt=""></li>
+                             <li class="post-author-img"><img src="{{ asset('uploads/profile') }}/{{ $blog->Relationwithuser->image }}" alt=""></li>
                              <li class="post-author"> <a href="author.html">{{ $blog->Relationwithuser->name }}</a></li>
                              <li class="entry-cat"> <a href="blog-layout-1.html" class="category-style-1 "> <span class="line"></span> {{ $blog->Relationwithuser->role }}</a></li>
                              <li class="post-date"> <span class="line"></span> {{ \Carbon\Carbon::parse($blog->submit_date)->format('M,d-Y') }}</li>
@@ -60,7 +60,7 @@
                              </p>
                          </div>
                          <div class="post-btn">
-                             <a href="post-single.html" class="btn-read-more">Continue Reading <i class="las la-long-arrow-alt-right"></i></a>
+                             <a href="{{ route('single.blogs',$blog->id) }}" class="btn-read-more">Continue Reading <i class="las la-long-arrow-alt-right"></i></a>
                          </div>
                      </div>
                  </div>

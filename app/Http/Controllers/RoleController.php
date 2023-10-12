@@ -13,10 +13,12 @@ class RoleController extends Controller
         $permissions = Permission::all();
         $roles = Role::all();
         $users = User::has('roles')->get();
+        $peoples = User::all();
         return view('dashboard.role_management.index',[
             'permissions' => $permissions,
             'roles' => $roles,
             'users' => $users,
+            'peoples' => $peoples,
         ]);
     }
     public function permission_store(Request $request){

@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Auth;
 // frontend controller
 Route::get('/',[FrontendController::class, 'index'])->name('index');
 Route::get('/categories/blogs/{id}',[FrontendController::class, 'category_blogs'])->name('blogs.category');
+Route::get('/single/blogs/{id}',[FrontendController::class, 'single_blogs'])->name('single.blogs');
 
 
 

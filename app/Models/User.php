@@ -8,12 +8,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Coderflex\Laravisit\Concerns\CanVisit;
+use Coderflex\Laravisit\Concerns\HasVisits;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements CanVisit
 {
     use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
+    use HasVisits;
 
     /**
      * The attributes that are mass assignable.

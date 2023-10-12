@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Tag;
+use Coderflex\Laravisit\Concerns\CanVisit;
+use Coderflex\Laravisit\Concerns\HasVisits;
 
-class Blog extends Model
+class Blog extends Model implements CanVisit
 {
     use HasFactory;
+    use HasVisits;
 
     protected $guarded = [''];
 

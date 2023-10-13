@@ -25,4 +25,8 @@ class FrontendController extends Controller
         $blog = Blog::where('id',$id)->first();
         return view('frontend.blogs.singleBlog',compact('blog'));
     }
+    public function blogs(){
+        $blogs = Blog::latest()->get();
+        return view('frontend.blogs.allBlogs',compact('blogs'));
+    }
 }

@@ -190,8 +190,8 @@
                         <button type="button" class="close">
                             <i class="far fa-times"></i>
                         </button>
-                        <form class="search-form" action="https://oredoo.assiagroupe.net/Oredoo/search.html">
-                            <input type="search" value="" placeholder="What are you looking for?">
+                        <form class="search-form" action="{{ route('search.blogs') }}" method="GET">
+                            <input type="search" value="" placeholder="What are you looking for?" name="search">
                             <button type="submit" class="search-btn"> search</button>
                         </form>
                     </div>

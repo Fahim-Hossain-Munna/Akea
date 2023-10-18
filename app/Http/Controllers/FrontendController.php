@@ -27,4 +27,13 @@ class FrontendController extends Controller
         $comments = Comment::where('post_id',$id)->get();
         return view('frontend.blogs.singleBlog',compact('blog','comments'));
     }
+    public function blogs(){
+        $blogs = Blog::latest()->get();
+        return view('frontend.blogs.allBlogs',compact('blogs'));
+    }
+    public function search(Request $request){
+        $search = $request->search;
+        $blogs = Blog::where('title','like',"%$search%")->get();
+        return view('frontend.search.search',compact('blogs','search'));
+    }
 }

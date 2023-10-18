@@ -14,7 +14,8 @@
     <title> Oredoo - Personal Blog HTML Template </title>
 
     <!-- CSS Plugins -->
-    <link rel="stylesheet" href="{{ asset('frontend_assets') }}/assets/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="{{ asset('frontend_assets') }}/assets/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" href="{{ asset('frontend_assets') }}/assets/css/owl.carousel.css">
     <link rel="stylesheet" href="{{ asset('frontend_assets') }}/assets/css/line-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('frontend_assets') }}/assets/css/fontawesome.css">
@@ -47,10 +48,10 @@
                         <div class="collapse navbar-collapse" id="main_nav">
                             <ul class="navbar-nav ">
                                 <li class="nav-item ">
-                                    <a class="nav-link active" href="index.html"> Home </a>
+                                    <a class="nav-link active" href="{{ route('index') }}"> Home </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="blog.html"> Blogs </a>
+                                    <a class="nav-link" href=""> Blogs </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="author.html"> Authors </a>
@@ -86,7 +87,7 @@
                     </div>
                     <!--button-subscribe-->
                     <div class="botton-sub">
-                        <a href="signup.html" class="btn-subscribe">Sign Up</a>
+                        <a href="{{ route('author.registration') }}" class="btn-subscribe">Sign Up</a>
                     </div>
                     <!--navbar-toggler-->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
@@ -205,7 +206,8 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('frontend_assets') }}/assets/js/jquery.min.js"></script>
     <script src="{{ asset('frontend_assets') }}/assets/js/popper.min.js"></script>
-    <script src="{{ asset('frontend_assets') }}/assets/js/bootstrap.min.js"></script>
+    {{-- <script src="{{ asset('frontend_assets') }}/assets/js/bootstrap.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
     <!-- JS Plugins  -->
@@ -214,10 +216,12 @@
     <script src="{{ asset('frontend_assets') }}/assets/js/owl.carousel.min.js"></script>
     <script src="{{ asset('frontend_assets') }}/assets/js/switch.js"></script>
     <script src="{{ asset('frontend_assets') }}/assets/js/jquery.marquee.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <!-- JS main  -->
     <script src="{{ asset('frontend_assets') }}/assets/js/main.js"></script>
+    @yield('footer_content')
 
 
 </body>

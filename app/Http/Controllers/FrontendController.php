@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -23,6 +24,7 @@ class FrontendController extends Controller
 
     public function single_blogs($id){
         $blog = Blog::where('id',$id)->first();
-        return view('frontend.blogs.singleBlog',compact('blog'));
+        $comments = Comment::where('post_id',$id)->get();
+        return view('frontend.blogs.singleBlog',compact('blog','comments'));
     }
 }

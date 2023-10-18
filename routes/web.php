@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\AuthorRegistrationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +33,12 @@ Route::get('/',[FrontendController::class, 'index'])->name('index');
 Route::get('/categories/blogs/{id}',[FrontendController::class, 'category_blogs'])->name('blogs.category');
 Route::get('/single/blogs/{id}',[FrontendController::class, 'single_blogs'])->name('single.blogs');
 
+//  AuthorRegistrationController
+Route::get('/author/registration',[AuthorRegistrationController::class, 'registration'])->name('author.registration');
+Route::post('/author/registration/post',[AuthorRegistrationController::class, 'registration_create'])->name('author.registration.post');
+
+// Comment controller
+Route::post('/single/blogs/comment/{id}',[CommentController::class, 'comment'])->name('comment.post');
 
 
 Auth::routes();
@@ -42,7 +52,7 @@ Route::post('/profile/image/update',[ProfileController::class,'image_update'])->
 Route::post('/profile/password/update',[ProfileController::class,'password_update'])->name('profile.password.update');
 
 // CategoryController
-Route::get('/category',[CategoryController::class,'index'])->name('category');
+Route::get('/category',[CategoryController::class,'index'])->name('category')->middleware('role');
 
 // TagController
 Route::get('/tag',[TagController::class,'index'])->name('tags');
@@ -63,4 +73,24 @@ Route::post('/role/permission/store',[RoleController::class,'permission_store'])
 Route::post('/role/store',[RoleController::class,'role_store'])->name('role.store');
 Route::get('/role/delete/{id}',[RoleController::class,'role_delete'])->name('role.delete');
 Route::post('/assign/user/role',[RoleController::class,'assign_role'])->name('assign.role');
+
+
+
+// email varification
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 

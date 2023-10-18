@@ -82,15 +82,18 @@
                         <a href="mailbox.html"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>
                     </li>
 
-                    <li class="{{ (\Request::route()->getName() == 'category') ? 'active-page' : '' }}">
-                        <a href=""><i class="material-icons-two-tone">star</i>Categories<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="{{ route('category') }}">Category Show</a>
-                            </li>
+                    @if (auth()->user()->role == 'admin')
+                        <li class="{{ (\Request::route()->getName() == 'category') ? 'active-page' : '' }}">
+                            <a href=""><i class="material-icons-two-tone">star</i>Categories<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="{{ route('category') }}">Category Show</a>
+                                </li>
 
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
+
+                    @endif
 
                     <li class="{{ (\Request::route()->getName() == 'tags') ? 'active-page' : '' }}">
                         <a href=""><i class="material-icons-two-tone">star</i>Tags<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>

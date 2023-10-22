@@ -50,14 +50,12 @@
                                 </td>
                                 <td>{{ $blog->title }}</td>
                                 <td>
-                                    <form action="{{ route('blog.status',$blog->id) }}" method="POST">
-                                        @csrf
                                     @if ($blog->status == 'deactive')
-                                    <button class="btn btn-danger" type="submit">{{ $blog->status }}</button>
+                                    <a href="{{ route('blog.status',$blog->id) }}" class="btn btn-danger">{{ $blog->status }}</a>
                                     @else
-                                    <button class="btn btn-success" type="submit">{{ $blog->status }}</button>
+                                    <a href="{{ route('blog.status',$blog->id) }}" class="btn btn-success">{{ $blog->status }}</a>
                                     @endif
-                                    </form>
+
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#info{{ $blog->id }}">Info</button>

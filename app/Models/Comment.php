@@ -10,4 +10,12 @@ class Comment extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $guarded=[''];
+
+    public function relationwithUser(){
+        return $this->hasOne(User::class,'id','user_id');
+    }
+    public function relationwithReply(){
+        return $this->hasMany(Comment::class,'replay_id','id');
+    }
 }

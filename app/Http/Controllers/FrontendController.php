@@ -24,7 +24,7 @@ class FrontendController extends Controller
 
     public function single_blogs($id){
         $blog = Blog::where('id',$id)->first();
-        $comments = Comment::where('post_id',$id)->get();
+        $comments = Comment::with('relationwithReply')->where('post_id',$id)->whereNull('replay_id')->get();
         return view('frontend.blogs.singleBlog',compact('blog','comments'));
     }
     public function blogs(){

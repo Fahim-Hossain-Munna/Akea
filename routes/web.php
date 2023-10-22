@@ -61,7 +61,7 @@ Route::get('/tag',[TagController::class,'index'])->name('tags');
 
 // BlogController
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
-Route::post('/blog/status/change/{id}',[BlogController::class,'status_change'])->name('blog.status');
+Route::get('/blog/status/change/{id}',[BlogController::class,'status_change'])->name('blog.status');
 Route::get('/blog/edit/{id}',[BlogController::class,'blog_edit'])->name('blog.edit');
 Route::post('/blog/edit/post/{id}',[BlogController::class,'edit_post'])->name('blog.edit.post');
 Route::post('/blog/delete/{id}',[BlogController::class,'blog_delete'])->name('blog.delete');
@@ -81,7 +81,7 @@ Route::post('/assign/user/role',[RoleController::class,'assign_role'])->name('as
 // email varification
 
 Route::get('/email/verify', function () {
-    return view('auth.verify-email');
+    return view('auth.verify');
 })->middleware('auth')->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {

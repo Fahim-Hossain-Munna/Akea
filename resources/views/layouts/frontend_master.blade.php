@@ -25,7 +25,10 @@
     <link rel="stylesheet" href="{{ asset('frontend_assets') }}/assets/css/custom.css">
 </head>
 
+
+
 <body>
+
     <!--loading -->
     <div class="loader">
         <div class="loader-element"></div>
@@ -48,17 +51,12 @@
                         <div class="collapse navbar-collapse" id="main_nav">
                             <ul class="navbar-nav ">
                                 <li class="nav-item ">
-<<<<<<< HEAD
-                                    <a class="nav-link active" href="{{ route('index') }}"> Home </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href=""> Blogs </a>
-=======
+
                                     <a class="nav-link {{ (\Request::route()->getName() == 'index') ? 'active' : '' }}" href="{{ route('index') }}"> Home </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link {{ (\Request::route()->getName() == 'blogs.all') ? 'active' : '' }}" href="{{ route('blogs.all') }}"> Blogs </a>
->>>>>>> cf9d446f5fcadf791ddd5939500802488f20f8da
+
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="author.html"> Authors </a>

@@ -139,23 +139,42 @@
                             <ul class="comments">
                                 <!--comment1-->
                                @forelse ($comments as $comment)
-                                 <li class="comment-item pt-0">
-                                     <img src="assets/img/other/user1.jpg" alt="">
+                                 <li class="comment-item mt-2 mb-2">
+                                     <img src="{{ asset('uploads/profile') }}/{{ $comment->relationwithUser->image }}" alt="">
                                      <div class="content">
                                          <div class="meta">
                                              <ul class="list-inline">
-                                                 <li><a href="#">Nirmaine Nicole</a> </li>
+                                                 <li><a href="#">{{ $comment->name }}</a> </li>
                                                  <li class="slash"></li>
-                                                 <li>3 Months Ago</li>
+                                                 <li>{{ $comment->created_at }}</li>
                                              </ul>
                                          </div>
-                                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus at doloremque adipisci eum placeat
-                                             quod non fugiat aliquid sit similique!
+                                         <p>{{ $comment->message }}
                                          </p>
-                                         <a href="#" class="btn-reply"><i class="las la-reply"></i> Reply</a>
+                                         <a href="#comment" onclick="myFun(event)" id="{{ $comment->id }}" class="btn-reply link"><i class="las la-reply"></i> Reply-{{ $comment->id }}</a>
                                      </div>
 
                                  </li>
+
+                                @foreach ($comment->relationwithReply as $replay)
+                                     <li class="comment-item mt-2 mb-2 ms-5">
+                                         <img src="{{ asset('uploads/profile') }}/{{ $replay->relationwithUser->image }}" alt="">
+                                         <div class="content">
+                                             <div class="meta">
+                                                 <ul class="list-inline">
+                                                     <li><a href="#">{{ $replay->name }}</a> </li>
+                                                     <li class="slash"></li>
+                                                     <li>{{ $replay->created_at }}</li>
+                                                 </ul>
+                                             </div>
+                                             <p>{{ $replay->message }}
+                                             </p>
+                                             {{-- <a onclick="myFun(event)" id="{{ $comment->id }}" class="btn-reply link"><i class="las la-reply"></i> Reply</a> --}}
+                                         </div>
+
+                                     </li>
+                                @endforeach
+
                                  @empty
                                  <li class="comment-item pt-0">
                                     <img src="assets/img/other/user1.jpg" alt="">
@@ -170,7 +189,7 @@
                                         <p>
                                             Sorry, no comment for this post yet!!
                                         </p>
-                                        <a href="#" class="btn-reply"><i class="las la-reply"></i> Reply</a>
+                                        <a class="btn-reply"><i class="las la-reply"></i> Reply</a>
                                     </div>
 
                                 </li>
@@ -179,38 +198,41 @@
 
                             </ul>
                             <!--Leave-comments-->
-                            <div class="comments-form">
-                                <h4 >Leave a Reply</h4>
-                                <!--form-->
-                                <form class="form" action="{{ route('comment.post',$blog->id) }}" method="POST">
-                                    @csrf
-                                    <p>Your email adress will not be published ,Requied fileds are marked*.</p>
-                                    <div class="alert alert-success contact_msg" style="display: none" role="alert">
-                                        Your message was sent successfully.
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="text" name="name"  class="form-control" placeholder="Name*" >
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input type="email" name="email"   class="form-control" placeholder="Email*">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Message*"></textarea>
-                                            </div>
-                                        </div>
+                         @auth
+                               <div class="comments-form" id="comment">
+                                   <h4 >Leave a Reply</h4>
+                                   <!--form-->
+                                   <form class="form" action="{{ route('comment.post',$blog->id) }}" method="POST">
+                                       @csrf
+                                       <p>Your email adress will not be published ,Requied fileds are marked*.</p>
+                                       <div class="alert alert-success contact_msg" style="display: none" role="alert">
+                                           Your message was sent successfully.
+                                       </div>
+                                       <div class="row">
+                                           <div class="col-md-6">
+                                               <div class="form-group">
+                                                   <input type="text" name="name" value="{{ auth()->user()->name }}"  class="form-control" placeholder="Name*" >
+                                               </div>
+                                           </div>
+                                           <div class="col-md-6">
+                                               <div class="form-group">
+                                                   <input type="email" name="email" value="{{ auth()->user()->email }}"  class="form-control" placeholder="Email*">
+                                                   <input id="replay_id" type="text" name="replay_id" class="form-control test">
+                                               </div>
+                                           </div>
+                                           <div class="col-md-12">
+                                               <div class="form-group">
+                                                   <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Message*"></textarea>
+                                               </div>
+                                           </div>
 
-                                            <button type="submit" class="btn-custom">
-                                                Send Comment
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                                               <button type="submit" class="btn-custom">
+                                                   Send Comment
+                                               </button>
+                                           </div>
+                                       </div>
+                                   </form>
+                         @endauth
                                 <!--/-->
                             </div>
                         </div>
@@ -247,5 +269,17 @@
         })
     </script>
 @endif
+
+<script>
+   let link =  document.querySelector(".link");
+
+   let input = document.querySelector("#replay_id");
+
+    function myFun(e){
+        input.value= e.target.id
+
+    }
+
+</script>
 
 @endsection

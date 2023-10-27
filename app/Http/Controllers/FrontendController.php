@@ -13,8 +13,9 @@ class FrontendController extends Controller
     public function index(){
         $categories = Category::all();
         $blogs = Blog::where('status','active')->latest()->get();
-        $populerblogs = Blog::popularAllTime()->get();
-        return view('frontend.root.index',compact('categories','blogs','populerblogs'));
+        $populerblogs = Blog::where('status','active')->orderBy('visitor_count','desc')->get();
+        return $populerblogs;
+        // return view('frontend.root.index',compact('categories','blogs','populerblogs'));
     }
 
     public function category_blogs($id){
@@ -25,6 +26,12 @@ class FrontendController extends Controller
 
     public function single_blogs($id){
         $blog = Blog::where('id',$id)->first();
+        // $blog->visit();
+        if($blog){
+            Blog::find($id)->update([
+                'visitor_count' => $blog->visitor_count + 1,
+            ]);
+        }
         $comments = Comment::with('relationwithReply')->where('post_id',$id)->whereNull('replay_id')->get();
         return view('frontend.blogs.singleBlog',compact('blog','comments'));
     }

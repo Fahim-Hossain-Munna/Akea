@@ -32,6 +32,7 @@ use Illuminate\Http\Request;
 Route::get('/',[FrontendController::class, 'index'])->name('index');
 Route::get('/blogs',[FrontendController::class, 'blogs'])->name('blogs.all');
 Route::get('/categories/blogs/{id}',[FrontendController::class, 'category_blogs'])->name('blogs.category');
+Route::get('/tag/blogs/{id}',[FrontendController::class, 'tag_blogs'])->name('blogs.tag');
 Route::get('/single/blogs/{id}',[FrontendController::class, 'single_blogs'])->name('single.blogs');
 Route::get('/search/blogs',[FrontendController::class, 'search'])->name('search.blogs');
 

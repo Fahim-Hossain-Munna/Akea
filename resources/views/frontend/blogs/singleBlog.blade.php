@@ -45,7 +45,7 @@
                                 <ul class="list-inline">
                                     @foreach ($blog->RelationshipwithTags as $tag)
                                         <li >
-                                            <a href="blog-layout-2.html">{{ $tag->tag_name }}</a>
+                                            <a href="{{ route('blogs.tag',$tag->id) }}">{{ $tag->tag_name }}</a>
                                         </li>
                                     @endforeach
                                     {{-- <li >

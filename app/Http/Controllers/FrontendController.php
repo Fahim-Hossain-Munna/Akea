@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -35,5 +36,11 @@ class FrontendController extends Controller
         $search = $request->search;
         $blogs = Blog::where('title','like',"%$search%")->get();
         return view('frontend.search.search',compact('blogs','search'));
+    }
+    public function tag_blogs($id){
+        $relation = Tag::with('relationshipwithblogs')->where('id',$id)->get();
+        $blogs = $relation[0]->relationshipwithblogs;
+
+        return view('frontend.tagblogs.index',compact('blogs'));
     }
 }

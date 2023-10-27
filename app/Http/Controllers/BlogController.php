@@ -47,9 +47,9 @@ class BlogController extends Controller
         $image_unlink = Blog::where('id',$id)->first();
         if($request->hasFile('image')){
 
-            if($image_unlink->image){
-                unlink(public_path('uploads/blog/'.$image_unlink->image));
-            }
+            // if($image_unlink->image){
+            //     unlink(public_path('uploads/blog/'.$image_unlink->image));
+            // }
             $new_name = auth()->id().'-'.$request->title.'.'.$request->file('image')->getClientOriginalExtension();
             $img = Image::make($request->file('image'))->resize(300, 200);
             $img->save(base_path('public/uploads/blog/'.$new_name), 80);

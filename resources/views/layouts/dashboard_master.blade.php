@@ -71,6 +71,9 @@
                     <li class="{{ (\Request::route()->getName() == 'profile.index') ? 'active-page' : '' }}">
                         <a href="{{ route('profile.index') }}" class="active"><i class="material-icons-two-tone">face</i>Profile</a>
                     </li>
+                    <li class="{{ (\Request::route()->getName() == 'index') ? 'active-page' : '' }}">
+                        <a href="{{ route('index') }}" target="_blank" class="active"><i class="material-icons-two-tone">web</i>web view</a>
+                    </li>
                     @can('author')
                         @can('viewer')
                         <li class="{{ (\Request::route()->getName() == 'role.management') ? 'active-page' : '' }}">

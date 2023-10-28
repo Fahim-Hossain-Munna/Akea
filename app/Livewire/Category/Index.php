@@ -92,7 +92,11 @@ class Index extends Component
                 $img = Image::make($this->category_image)->resize(300, 200);
                 $img->save(base_path('public/uploads/category/'.$new_name), 80);
 
-                unlink(public_path('uploads/category/'. $categories->category_image));
+                if($categories->category_image){
+
+                    unlink(public_path('uploads/category/'. $categories->category_image));
+                }
+
                     Category::find($id)->update([
                         'category_image' =>  $new_name,
                         'created_at' => now(),

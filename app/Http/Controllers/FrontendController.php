@@ -12,10 +12,12 @@ class FrontendController extends Controller
 {
     public function index(){
         $categories = Category::all();
+        $tags = Tag::latest()->take(10)->get();
         $blogs = Blog::where('status','active')->latest()->get();
-        $populerblogs = Blog::where('status','active')->orderBy('visitor_count','desc')->get();
-        return $populerblogs;
-        // return view('frontend.root.index',compact('categories','blogs','populerblogs'));
+        $populerblogs = Blog::where('status','active')->orderBy('visitor_count','desc')->take(3)->get();
+        $recentblogs = Blog::where('status','active')->take(8)->get();
+        // return $populerblogs;
+        return view('frontend.root.index',compact('categories','blogs','populerblogs','recentblogs','tags'));
     }
 
     public function category_blogs($id){
@@ -45,9 +47,10 @@ class FrontendController extends Controller
         return view('frontend.search.search',compact('blogs','search'));
     }
     public function tag_blogs($id){
+        $tag_name = Tag::where('id',$id)->first();
         $relation = Tag::with('relationshipwithblogs')->where('id',$id)->get();
         $blogs = $relation[0]->relationshipwithblogs;
 
-        return view('frontend.tagblogs.index',compact('blogs'));
+        return view('frontend.tagblogs.index',compact('blogs','tag_name'));
     }
 }
